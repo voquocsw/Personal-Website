@@ -46,7 +46,7 @@ namespace DataAccess
         {
             try
             {
-                var categoryUpdate = GetCategoryById(category.CategoryId);
+                var categoryUpdate = await GetCategoryById(category.CategoryId);
                 if (categoryUpdate != null)
                 {
                     _context.Entry(categoryUpdate).CurrentValues.SetValues(category);

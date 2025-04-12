@@ -32,7 +32,7 @@ namespace DataAccess
         {
             try
             {
-                var productUpdate = GetProductById(product.ProductId);
+                var productUpdate = await GetProductById(product.ProductId);
                 if (productUpdate != null)
                 {
                     _context.Entry(productUpdate).CurrentValues.SetValues(product);

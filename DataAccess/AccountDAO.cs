@@ -43,7 +43,7 @@ namespace DataAccess
         {
             try
             {
-                var accountUpdate = GetAccountById(account.AccountId);
+                var accountUpdate = await GetAccountById(account.AccountId);
                 if (accountUpdate == null)
                 {
                     return null;

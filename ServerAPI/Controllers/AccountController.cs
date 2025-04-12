@@ -1,6 +1,7 @@
 ﻿using BussinessObject;
 using DataAccess;
 using Microsoft.AspNetCore.Mvc;
+using Repository;
 using Repository.IRepository;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -13,9 +14,9 @@ namespace ServerAPI.Controllers
     {
         private readonly IAccountRepository accountRepository;
 
-        public AccountController(IAccountRepository accountRepository)
+        public AccountController()
         {
-            this.accountRepository = accountRepository;
+            accountRepository = new AccountRepository();
         }
         // GET: api/<AccountController>
         [HttpGet]

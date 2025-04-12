@@ -34,9 +34,10 @@ namespace DataAccess
         {
             try
             {
-                var roleUpdate = GetRoleById(role.RoleId);
+                var roleUpdate = await GetRoleById(role.RoleId);
                 if (roleUpdate != null)
                 {
+                    //_context.Roles.Attach(roleUpdate);
                     _context.Entry(roleUpdate).CurrentValues.SetValues(role);
                     await _context.SaveChangesAsync();
                     return role;

@@ -1,5 +1,7 @@
-var builder = WebApplication.CreateBuilder(args);
+using BussinessObject;
 
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddScoped<ServerContext>();
 // Add services to the container.
 
 builder.Services.AddControllers();

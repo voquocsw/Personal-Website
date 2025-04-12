@@ -46,7 +46,7 @@ namespace DataAccess
         {
             try
             {
-                var orderDetailsUpdate = GetOrderDetailsById(orderDetails.ProductId, orderDetails.OrderId);
+                var orderDetailsUpdate = await GetOrderDetailsById(orderDetails.ProductId, orderDetails.OrderId);
                 if (orderDetailsUpdate != null)
                 {
                     _context.Entry(orderDetailsUpdate).CurrentValues.SetValues(orderDetails);
