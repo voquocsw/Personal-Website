@@ -43,14 +43,14 @@ namespace DataAccess
         {
             try
             {
-                var accountUpdate = await GetAccountById(account.AccountId);
-                if (accountUpdate == null)
+                var accountUpdate = GetAccountById(account.AccountId);
+                if (accountUpdate != null)
                 {
-                    return null;
+                    _context.Entry(accountUpdate).CurrentValues.SetValues(account);
+                    await _context.SaveChangesAsync();
+                    return account;
                 }
-                _context.Accounts.Update(account);
-                await _context.SaveChangesAsync();
-                return account;
+                return null;
             }catch (Exception ex) {
                 throw new Exception("(AccountDAO) Update Account Error: " + ex.Message);
             }

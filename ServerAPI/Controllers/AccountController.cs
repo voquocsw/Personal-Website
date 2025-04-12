@@ -18,7 +18,7 @@ namespace ServerAPI.Controllers
         {
             accountRepository = new AccountRepository();
         }
-        // GET: api/<AccountController>
+
         [HttpGet]
         public async Task<IEnumerable<Account>> GetAllAccount()
         {
@@ -38,7 +38,7 @@ namespace ServerAPI.Controllers
         }
 
         [HttpPut("{id}")] 
-        public async Task<Account?> UpdateAccount(Account account)
+        public async Task<Account> UpdateAccount(Account account)
         {
             return await accountRepository.UpdateAccount(account);
         }

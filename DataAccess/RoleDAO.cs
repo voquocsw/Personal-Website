@@ -10,7 +10,7 @@ namespace DataAccess
 {
     public class RoleDAO : SingletonBase<RoleDAO>
     {
-        public async Task<IEnumerable<Role>> GetAllRole() => await _context.Roles.ToListAsync();
+        public async Task<IEnumerable<Role>> GetAllRole() => await _context.Roles.AsNoTracking().ToListAsync();
         public async Task<Role> GetRoleById(int id)
         {
             return await _context.Roles.FirstOrDefaultAsync(r => r.RoleId == id);
