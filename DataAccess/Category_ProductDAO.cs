@@ -39,13 +39,15 @@ namespace DataAccess
                 throw new Exception("(Category_ProductDAO) Delete Category_Product Error: " + ex.Message);
             }
         }
-        public async Task<Category_Product?> UpdateCategory_Product(Category_Product category_product)
+        public async Task<Category_Product?> UpdateCategory_Product(int CategoryId, int ProductId, Category_Product category_product)
         {
             try
             {
-                var category_productUpdate = await GetCategory_ProductById(category_product.CategoryId, category_product.ProductId);
+                var category_productUpdate = await GetCategory_ProductById(CategoryId, ProductId);
                 if (category_productUpdate != null)
                 {
+                    category_product.CategoryId = CategoryId;
+                    category_product.ProductId = ProductId;
                     _context.Entry(category_productUpdate).CurrentValues.SetValues(category_product);
                     await _context.SaveChangesAsync();
                     return category_product;

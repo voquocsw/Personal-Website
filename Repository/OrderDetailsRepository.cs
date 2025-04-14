@@ -15,6 +15,6 @@ namespace Repository
         public async Task<OrderDetails?> GetOrderDetailsById(int ProductId, int OrderId) => await OrderDetailsDAO.Instance.GetOrderDetailsById(ProductId, OrderId);
         public async Task DeleteOrderDetails(int ProductId, int OrderId) => await OrderDetailsDAO.Instance.DeleteOrderDetails(ProductId, OrderId);
         public async Task<OrderDetails?> CreateOrderDetails(OrderDetails orderDetails) => await OrderDetailsDAO.Instance.CreateOrderDetails(orderDetails);
-        public async Task<OrderDetails?> UpdateOrderDetails(OrderDetails orderDetails) => await OrderDetailsDAO.Instance.UpdateOrderDetails(orderDetails);
+        public async Task<OrderDetails?> UpdateOrderDetails(int ProductId, int OrderId, OrderDetails orderDetails) => await OrderDetailsDAO.Instance.UpdateOrderDetails(ProductId, OrderId, orderDetails);
     }
 }

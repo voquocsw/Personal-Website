@@ -1,6 +1,8 @@
 ﻿using BussinessObject;
 using DataAccess;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OData.Query;
+using Microsoft.AspNetCore.OData.Routing.Controllers;
 using Repository;
 using Repository.IRepository;
 
@@ -10,7 +12,7 @@ namespace ServerAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AccountController : ControllerBase
+    public class AccountController : ODataController
     {
         private readonly IAccountRepository accountRepository;
 
@@ -20,6 +22,7 @@ namespace ServerAPI.Controllers
         }
 
         [HttpGet]
+        [EnableQuery]
         public async Task<IEnumerable<Account>> GetAllAccount()
         {
              return await accountRepository.GetAllAccount();
@@ -38,9 +41,9 @@ namespace ServerAPI.Controllers
         }
 
         [HttpPut("{id}")] 
-        public async Task<Account> UpdateAccount(Account account)
+        public async Task<Account?> UpdateAccount(int id, Account account)
         {
-            return await accountRepository.UpdateAccount(account);
+            return await accountRepository.UpdateAccount(id, account);
         }
 
         [HttpPost]

@@ -12,7 +12,7 @@ namespace Repository.IRepository
         Task<IEnumerable<OrderDetails>> GetAllOrderDetails();
         Task<OrderDetails?> GetOrderDetailsById(int ProductId, int OrderId);
         Task<OrderDetails?> CreateOrderDetails(OrderDetails orderDetails);
-        Task<OrderDetails?> UpdateOrderDetails(OrderDetails orderDetails);
+        Task<OrderDetails?> UpdateOrderDetails(int ProductId, int OrderId, OrderDetails orderDetails);
         Task DeleteOrderDetails(int ProductId, int OrderId);
     }
 }

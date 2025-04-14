@@ -39,22 +39,24 @@ namespace DataAccess
             
         }
 
-        public async Task<Account?> UpdateAccount(Account account)
+        public async Task<Account?> UpdateAccount(int id, Account account)
         {
             try
             {
-                var accountUpdate = GetAccountById(account.AccountId);
+                var accountUpdate = await GetAccountById(id);
                 if (accountUpdate != null)
                 {
+                    account.AccountId = id;
                     _context.Entry(accountUpdate).CurrentValues.SetValues(account);
                     await _context.SaveChangesAsync();
                     return account;
                 }
                 return null;
-            }catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 throw new Exception("(AccountDAO) Update Account Error: " + ex.Message);
             }
-            
         }
 
         public async Task DeleteAccount(int id)

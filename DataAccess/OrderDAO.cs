@@ -41,13 +41,14 @@ namespace DataAccess
                 throw new Exception("(OrderDAO) Delete Order Error: " + ex.Message);
             }
         }
-        public async Task<Order?> UpdateOrder(Order order)
+        public async Task<Order?> UpdateOrder(int id, Order order)
         {
             try
             {
-                var orderUpdate = await GetOrderById(order.OrderId);
+                var orderUpdate = await GetOrderById(id);
                 if (orderUpdate != null)
                 {
+                    order.OrderId = id;
                     _context.Entry(orderUpdate).CurrentValues.SetValues(order);
                     await _context.SaveChangesAsync();
                     return order;

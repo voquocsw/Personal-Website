@@ -30,14 +30,14 @@ namespace DataAccess
             }
 
         }
-        public async Task<Role?> UpdateRole(Role role)
+        public async Task<Role?> UpdateRole(int id, Role role)
         {
             try
             {
-                var roleUpdate = await GetRoleById(role.RoleId);
+                var roleUpdate = await GetRoleById(id);
                 if (roleUpdate != null)
                 {
-                    //_context.Roles.Attach(roleUpdate);
+                    role.RoleId = id;
                     _context.Entry(roleUpdate).CurrentValues.SetValues(role);
                     await _context.SaveChangesAsync();
                     return role;

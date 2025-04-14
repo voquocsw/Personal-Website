@@ -14,7 +14,7 @@ namespace Repository
         public async Task<IEnumerable<Order>> GetAllOrders() => await OrderDAO.Instance.GetAllOrder();
         public async Task<Order?> GetOrderById(int id) => await OrderDAO.Instance.GetOrderById(id);
         public async Task<Order?> CreateOrder(Order order) => await OrderDAO.Instance.CreateOrder(order);
-        public async Task<Order?> UpdateOrder(Order order) => await OrderDAO.Instance.UpdateOrder(order);
+        public async Task<Order?> UpdateOrder(int id, Order order) => await OrderDAO.Instance.UpdateOrder(id, order);
         public async Task DeleteOrder(int id) => await OrderDAO.Instance.DeleteOrder(id);
     }
 }

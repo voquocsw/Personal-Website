@@ -12,7 +12,7 @@ namespace Repository.IRepository
         Task<IEnumerable<Role>> GetAllRoles();
         Task<Role?> GetRoleById(int roleId);
         Task<Role?> CreateRole(Role role);
-        Task<Role?> UpdateRole(Role role);
+        Task<Role?> UpdateRole(int id, Role role);
         Task DeleteRole(int roleId);
     }
 }

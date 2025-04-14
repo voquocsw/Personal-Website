@@ -42,13 +42,15 @@ namespace DataAccess
                 throw new Exception("(OrderDetailsDAO) Delete OrderDetails Error: " + ex.Message);
             }
         }
-        public async Task<OrderDetails?> UpdateOrderDetails(OrderDetails orderDetails)
+        public async Task<OrderDetails?> UpdateOrderDetails(int ProductId, int OrderId, OrderDetails orderDetails)
         {
             try
             {
-                var orderDetailsUpdate = await GetOrderDetailsById(orderDetails.ProductId, orderDetails.OrderId);
+                var orderDetailsUpdate = await GetOrderDetailsById(ProductId, OrderId);
                 if (orderDetailsUpdate != null)
                 {
+                    orderDetails.ProductId = ProductId;
+                    orderDetails.OrderId = OrderId;
                     _context.Entry(orderDetailsUpdate).CurrentValues.SetValues(orderDetails);
                     await _context.SaveChangesAsync();
                     return orderDetails;

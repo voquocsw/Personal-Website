@@ -14,7 +14,7 @@ namespace Repository
         public async Task<IEnumerable<Product>> GetAllProduct() => await ProductDAO.Instance.GetAllProduct();
         public async Task<Product?> GetProductById(int id) => await ProductDAO.Instance.GetProductById(id);
         public async Task<Product?> CreateProduct(Product product) => await ProductDAO.Instance.CreateProduct(product);
-        public async Task<Product?> UpdateProduct(Product product) => await ProductDAO.Instance.UpdateProduct(product);
+        public async Task<Product?> UpdateProduct(int id, Product product) => await ProductDAO.Instance.UpdateProduct(id, product);
         public async Task DeleteProduct(int id) => await ProductDAO.Instance.DeleteProduct(id);
     }
 }

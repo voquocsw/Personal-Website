@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OData.Query;
+using Microsoft.AspNetCore.OData.Routing.Controllers;
 using Microsoft.EntityFrameworkCore;
 using Repository;
 using Repository.IRepository;
@@ -10,7 +12,7 @@ namespace ServerAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RoleController : ControllerBase
+    public class RoleController : ODataController
     {
         private readonly IRoleRepository roleRepository;
         public RoleController()
@@ -19,6 +21,7 @@ namespace ServerAPI.Controllers
         }
 
         [HttpGet]
+        [EnableQuery]
         public async Task<IEnumerable<Role>> GetAllRole()
         {
             return await roleRepository.GetAllRoles();
@@ -39,7 +42,7 @@ namespace ServerAPI.Controllers
         [HttpPut("{id}")]
         public async Task<Role?> UpdateRole(int id, Role role)
         {
-            return await roleRepository.UpdateRole(role);
+            return await roleRepository.UpdateRole(id, role);
         }
 
         [HttpPost]

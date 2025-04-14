@@ -42,14 +42,15 @@ namespace DataAccess
 
 
         }
-        public async Task<Category?> UpdateCategory(Category category)
+        public async Task<Category?> UpdateCategory(int Id, Category category)
         {
             try
             {
-                var categoryUpdate = await GetCategoryById(category.CategoryId);
+                var categoryUpdate = await GetCategoryById(Id);
                 if (categoryUpdate != null)
                 {
-                    _context.Entry(categoryUpdate).CurrentValues.SetValues(category);
+                    category.CategoryId = Id;
+                    _context.Entry(categoryUpdate).CurrentValues.SetValues(category);                    
                     await _context.SaveChangesAsync();
                     return category;
                 }

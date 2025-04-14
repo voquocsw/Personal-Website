@@ -28,13 +28,14 @@ namespace DataAccess
                 throw new Exception("(ProductDAO) Create Product Error: " + ex.Message);
             }
         }
-        public async Task<Product?> UpdateProduct(Product product)
+        public async Task<Product?> UpdateProduct(int Id, Product product)
         {
             try
             {
-                var productUpdate = await GetProductById(product.ProductId);
+                var productUpdate = await GetProductById(Id);
                 if (productUpdate != null)
                 {
+                    product.ProductId = Id;
                     _context.Entry(productUpdate).CurrentValues.SetValues(product);
                     await _context.SaveChangesAsync();
                     return product;
