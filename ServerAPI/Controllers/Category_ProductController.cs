@@ -8,7 +8,7 @@ using Repository.IRepository;
 
 namespace ServerAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/CategoryProduct")]
     [ApiController]
     public class Category_ProductController : ODataController
     {
